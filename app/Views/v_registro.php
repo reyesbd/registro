@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="<?php echo base_url('css/estilos.css');?>" >
     <title>Hello, world!</title>
   </head>
   <body>
@@ -16,23 +16,29 @@
        <div class="row">
        <div class="col">
             <h2>Registro de talleres</h2>
+            <!-- ?php if (isSet($validation)){echo $validation->listErrors(); } ? -->
             <form action="<?php echo site_url('home/alta'); ?>" method="POST"> 
                     <div class="form-row">
 
                         <div class="form-group col-md-3">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre">
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php if (isSet($validation)){echo set_value('nombre');} ?> ">
+                           <div class="error">
+                           <?php if (isSet($validation)){echo $validation->showError('nombre');}?>
+                           </div> 
                         </div>
-
+s
                         <div class="form-group col-md-2">
                             <label for="ntrol">No. Control</label>
                             <input type="text" class="form-control" id="ntrol"  name="ntrol">
+                            <?php if (isSet($validation)){echo $validation->showError('ntrol');}?>                            
                         </div>
 
                         <div class="form-group col-md-2">
                             <label for="sem">Semestre</label>
                             <input type="text" class="form-control" id="sem" name="sem">
-                        </div>
+                            <?php if (isSet($validation)){echo $validation->showError('sem');}?>
+                            </div>
 
                         <div class="form-group col-md-5">
                             <label for="carrera">Carrera</label>
@@ -41,7 +47,7 @@
                                 <option value="1">Ing. en Sistemas Computacionales</option>
                                 <option value="2">Ing. Informática</option>
                                 <option value="3">Ing. Bioquímica</option>
-                            </select>
+                            </select>                          
                         </div>                        
                     </div>
 
